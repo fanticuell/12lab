@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="City.cs" />
+    <Compile Include="MakeList.cs" />
     <Compile Include="Megapolis.cs" />
+    <Compile Include="Node.cs" />
     <Compile Include="Place.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomClass.cs" />
