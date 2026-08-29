@@ -29,7 +29,7 @@ namespace _10
                 list.PrintList("Исходный список (Пункт 2)");
 
                 list.RemoveEvenPositions();
-                Console.WriteLine("\n[Система]: Произведено удаление элементов на четных позициях.");
+                Console.WriteLine("\nПроизведено удаление элементов на четных позициях.");
 
                 list.PrintList("Список после удаления четных элементов (Пункт 4)");
 
@@ -60,7 +60,7 @@ namespace _10
                 Console.WriteLine($"\n[Результат Пункта 3]: Среднее население городов в дереве = {avgPopulation:F2} чел.");
 
                 tree.ConvertToSearchTree();
-                Console.WriteLine("\n[Система]: Дерево преобразовано в дерево поиска (сортировка по алфавиту имен).");
+                Console.WriteLine("\nДерево преобразовано в дерево поиска (сортировка по алфавиту имен).");
 
                 tree.PrintTree("Дерево поиска (Пункт 5)");
 
@@ -70,7 +70,56 @@ namespace _10
             }
             else if (zadanie == "3")
             {
+                Place[] arr = new Place[]
+                {
+                    new Place("Центральный Парк"),
+                    new City("Казань", "Center1", 1234321),
+                    new Megapolis("Токио", "Center2", 666666, true),
+                    new Place("Секретное место"),
+                    new City("Пермь", "Center3", 1020400),
+                    new Region("Московская область", "Center4"),
+                    new City("Новгород", "Center5", 300000)
+                };
 
+                HashTable ht = new HashTable(5);
+
+                foreach (Place p in arr)
+                {
+                    ht.Add(p);
+                }
+
+                Console.WriteLine("=== Исходная хеш-таблица (Пункт 1) ===");
+                ht.Print();
+
+                string searchKey = "Пермь";
+                Console.WriteLine($"\n[Пункт 2]: Поиск элемента '{searchKey}'...");
+                if (ht.FindPoint(searchKey))
+                    Console.WriteLine("-> Результат: Элемент найден!");
+                else
+                    Console.WriteLine("-> Результат: Элемент НЕ найден.");
+
+                Console.WriteLine($"\n[Пункт 3]: Удаление элемента '{searchKey}'...");
+                Place deleted = ht.DelPoint(searchKey);
+                if (deleted != null)
+                    Console.WriteLine($"-> Успешно удален объект: {deleted.Name}");
+                else
+                    Console.WriteLine("-> Не удалось найти элемент для удаления.");
+
+                Console.WriteLine("\n=== Хеш-таблица после удаления (Пункт 3) ===");
+                ht.Print();
+
+                Console.WriteLine($"\n[Пункт 4]: Повторный поиск элемента '{searchKey}'...");
+                if (ht.FindPoint(searchKey))
+                    Console.WriteLine("-> Результат: Элемент всё ещё в таблице (ошибка).");
+                else
+                    Console.WriteLine("-> Результат: Элемент отсутствует (успешно удален).");
+
+                Console.WriteLine("\n[Пункт 5]: Демонстрация добавления в уже занятые ячейки (коллизия)...");
+                ht.Add(new City("Омск", "Center3", 1100000));
+                ht.Add(new Place("Новое Место"));
+
+                Console.WriteLine("\n=== Финальный вид таблицы со вложенными цепочками ===");
+                ht.Print();
             }
             else if (zadanie == "4")
             {

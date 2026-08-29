@@ -15,6 +15,8 @@ namespace PlacesLibrary
         public Node(Place data)
         {
             Data = data;
+            Next = null;
+            Prev = null;
         }
     }
 }

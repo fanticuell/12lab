@@ -125,7 +125,7 @@ namespace PlacesLibrary
             Root = ClearRecursive(Root);
             GC.Collect();
             GC.WaitForPendingFinalizers();
-            Console.WriteLine("\n[Система]: Дерево полностью удалено из памяти.");
+            Console.WriteLine("\nДерево полностью удалено из памяти.");
         }
 
         private TreeNode ClearRecursive(TreeNode node)

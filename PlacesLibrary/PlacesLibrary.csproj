@@ -44,6 +44,8 @@
     <Compile Include="Address.cs" />
     <Compile Include="BinaryTree.cs" />
     <Compile Include="City.cs" />
+    <Compile Include="HashTable.cs" />
+    <Compile Include="LPoint.cs" />
     <Compile Include="MakeList.cs" />
     <Compile Include="Megapolis.cs" />
     <Compile Include="Node.cs" />
