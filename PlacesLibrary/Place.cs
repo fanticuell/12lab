@@ -72,7 +72,16 @@ namespace PlacesLibrary
         public object Clone()
         {
             Place copy = new Place(this);
-            copy.Addr = new Address(this.Addr);
+
+            if (this.Addr != null)
+            {
+                copy.Addr = new Address(this.Addr);
+            }
+            else
+            {
+                copy.Addr = null;
+            }
+
             return copy;
         }
 

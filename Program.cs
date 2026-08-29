@@ -123,6 +123,58 @@ namespace _10
             }
             else if (zadanie == "4")
             {
+                Console.WriteLine("=== Демонстрация создания и наполнения коллекции ===");
+
+                MyCollection coll1 = new MyCollection(5);
+
+                coll1.Add(new Place("Парк Горького"));
+                coll1.Add(new City("Казань", "Center1", 1234321));
+
+                Place[] additionalItems = { new Megapolis("Токио", "Center2", 666666, true), new City("Пермь", "Cnter3", 1020400) };
+                coll1.AddRange(additionalItems);
+
+                Console.WriteLine("\nВывод коллекции через цикл foreach:");
+                foreach (Place p in coll1)
+                {
+                    p.Show();
+                }
+
+                Console.WriteLine($"\nТекущее количество элементов: {coll1.Count} (Ёмкость: {coll1.Capacity})");
+
+                try
+                {
+                    Console.WriteLine("\nПопытка добавить 2 элемента при оставшемся лимите 1");
+                    coll1.Add(new Place("Место 5"));
+                    coll1.Add(new Place("Место 6 (Лишнее)"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Ошибка! {ex.Message}");
+                }
+
+                Console.WriteLine("\n=== Тестирование поиска ===");
+                Place dummyForSearch = new Place("Парк Горького");
+                Place found = coll1.Find(dummyForSearch);
+                Console.WriteLine(found != null ? $"Найдено: {found.Name}" : "Не найдено");
+
+                Console.WriteLine("\n=== Тестирование удаления ===");
+                coll1.Remove(dummyForSearch);
+                Console.WriteLine("После удаления 'Парк Горького' список:");
+                foreach (Place p in coll1) Console.WriteLine($" - {p.Name}");
+
+                Console.WriteLine("\n=== Клонирование и поверхностное копирование ===");
+                MyCollection deepClone = coll1.DeepClone();
+                MyCollection shallowCopy = coll1.ShallowCopy();
+
+                coll1.Head.Data.Name = "ИЗМЕНЕНО";
+
+                Console.WriteLine($"В оригинале имя первого элемента: {coll1.Head.Data.Name}");
+                Console.WriteLine($"В поверхностной копии (имя тоже изменилось): {shallowCopy.Head.Data.Name}");
+                Console.WriteLine($"В глубоком клоне (имя осталось прежним): {deepClone.Head.Data.Name}");
+
+                Console.WriteLine("\n=== Очистка памяти ===");
+                coll1.Clear();
+                Console.WriteLine($"Количество элементов после Clear(): {coll1.Count}");
 
             }
         }
